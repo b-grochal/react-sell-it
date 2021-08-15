@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import { createTheme, ThemeProvider } from "@material-ui/core";
 import blue from "@material-ui/core/colors/blue";
+import { BrowserRouter } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -13,7 +14,9 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
+      <BrowserRouter>
+        <Navbar />
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

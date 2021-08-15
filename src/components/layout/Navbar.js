@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
   },
-  list: {
+  drawer: {
     width: 250,
   },
 }));
@@ -70,7 +70,12 @@ const Navbar = () => {
           <MenuIcon />
         </IconButton>
 
-        <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerClose}>
+        <Drawer
+          className={classes.drawer}
+          anchor="right"
+          open={drawerOpen}
+          onClose={handleDrawerClose}
+        >
           <div>{getDrawerLinks()}</div>
         </Drawer>
       </Toolbar>
@@ -92,7 +97,7 @@ const Navbar = () => {
 
   const getDrawerLinks = () => {
     return (
-      <List className={classes.list}>
+      <List>
         <ListItemLink
           primary="Hello"
           to=""
