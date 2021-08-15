@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 
-function ListItemLink(props) {
+const ListItemLink = (props) => {
   const { icon, primary, to } = props;
 
   const CustomLink = (props) => <Link to={to} {...props} />;
@@ -13,4 +14,6 @@ function ListItemLink(props) {
       </ListItem>
     </li>
   );
-}
+};
+
+export default ListItemLink;

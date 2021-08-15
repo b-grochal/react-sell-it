@@ -6,15 +6,20 @@ import {
   makeStyles,
   Drawer,
   Button,
+  List,
 } from "@material-ui/core";
 import { HelpOutline } from "@material-ui/icons";
 import MenuIcon from "@material-ui/icons/Menu";
 import React, { useState, useEffect } from "react";
+import ListItemLink from "../utils/ListItemLink";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: "flex",
     justifyContent: "space-between",
+  },
+  list: {
+    width: 250,
   },
 }));
 
@@ -86,7 +91,15 @@ const Navbar = () => {
   };
 
   const getDrawerLinks = () => {
-    return <span>hello</span>;
+    return (
+      <List className={classes.list}>
+        <ListItemLink
+          primary="Hello"
+          to=""
+          icon={<HelpOutline />}
+        ></ListItemLink>
+      </List>
+    );
   };
 
   return (
