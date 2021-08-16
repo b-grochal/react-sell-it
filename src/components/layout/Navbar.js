@@ -21,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: 250,
   },
+  drawerPaper: {
+    width: 250,
+  },
+  navButton: {
+    color: theme.palette.text.secondary,
+  },
 }));
 
 const Navbar = () => {
@@ -75,6 +81,7 @@ const Navbar = () => {
           anchor="right"
           open={drawerOpen}
           onClose={handleDrawerClose}
+          classes={{ paper: classes.drawerPaper }}
         >
           <div>{getDrawerLinks()}</div>
         </Drawer>
@@ -85,12 +92,12 @@ const Navbar = () => {
   const getMenuButtons = () => {
     return (
       <>
-        <Button>Home</Button>
-        <Button>Adverts</Button>
-        <Button>My Account</Button>
-        <Button>Log Out</Button>
-        <Button>Sign in</Button>
-        <Button>Sign up</Button>
+        <Button className={classes.navButton}>Home</Button>
+        <Button className={classes.navButton}>Adverts</Button>
+        <Button className={classes.navButton}>My Account</Button>
+        <Button className={classes.navButton}>Log Out</Button>
+        <Button className={classes.navButton}>Sign in</Button>
+        <Button className={classes.navButton}>Sign up</Button>
       </>
     );
   };
