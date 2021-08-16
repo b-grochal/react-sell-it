@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Navbar from "./components/layout/Navbar";
+import { createTheme, makeStyles, ThemeProvider } from "@material-ui/core";
+import blue from "@material-ui/core/colors/blue";
+import { BrowserRouter } from "react-router-dom";
+import Footer from "./components/layout/Footer";
+import Main from "./components/layout/Main";
+
+const theme = createTheme({
+  palette: {
+    primary: blue,
+    text: {
+      primary: "#FFFFFF",
+    },
+  },
+});
+
+// const useStyles = makeStyles((theme) => ({
+//   main: {
+//     flex: "1 0 auto",
+//   },
+//   footer: {
+//     flexShrink: "0"
+//   }
+// }))
 
 function App() {
+  // const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Navbar />
+        <Main />
+        <Footer />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
