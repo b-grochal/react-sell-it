@@ -12,6 +12,7 @@ import { HelpOutline } from "@material-ui/icons";
 import MenuIcon from "@material-ui/icons/Menu";
 import React, { useState, useEffect } from "react";
 import ListItemLink from "../utils/ListItemLink";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -63,12 +64,12 @@ const Navbar = () => {
     );
   };
 
-  const displayMobile = () => {
-    const handleDrawerOpen = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: true }));
-    const handleDrawerClose = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: false }));
+  const handleDrawerOpen = () =>
+    setState((prevState) => ({ ...prevState, drawerOpen: true }));
+  const handleDrawerClose = () =>
+    setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
+  const displayMobile = () => {
     return (
       <Toolbar className={classes.toolbar}>
         <Typography variant="h6">Sell It</Typography>
@@ -92,24 +93,37 @@ const Navbar = () => {
   const getMenuButtons = () => {
     return (
       <>
-        <Button className={classes.navButton}>Home</Button>
-        <Button className={classes.navButton}>Adverts</Button>
-        <Button className={classes.navButton}>My Account</Button>
-        <Button className={classes.navButton}>Log Out</Button>
-        <Button className={classes.navButton}>Sign in</Button>
-        <Button className={classes.navButton}>Sign up</Button>
+        <Button component={Link} to="/" className={classes.navButton}>
+          Home
+        </Button>
+        <Button component={Link} to="/adverts" className={classes.navButton}>
+          Adverts
+        </Button>
+        <Button component={Link} to="/account" className={classes.navButton}>
+          My Account
+        </Button>
+        <Button component={Link} to="/" className={classes.navButton}>
+          Log Out
+        </Button>
+        <Button component={Link} to="/sign-in" className={classes.navButton}>
+          Sign in
+        </Button>
+        <Button component={Link} to="/sign-up" className={classes.navButton}>
+          Sign up
+        </Button>
       </>
     );
   };
 
   const getDrawerLinks = () => {
     return (
-      <List>
-        <ListItemLink
-          primary="Hello"
-          to=""
-          icon={<HelpOutline />}
-        ></ListItemLink>
+      <List onClick={handleDrawerClose}>
+        <ListItemLink primary="Home" to="/" icon={<HelpOutline />} />
+        <ListItemLink primary="Adverts" to="/adverts" icon={<HelpOutline />} />
+        <ListItemLink primary="Account" to="/account" icon={<HelpOutline />} />
+        <ListItemLink primary="Log Out" to="/" icon={<HelpOutline />} />
+        <ListItemLink primary="Sign In" to="/sign-in" icon={<HelpOutline />} />
+        <ListItemLink primary="Sign Up" to="/sign-up" icon={<HelpOutline />} />
       </List>
     );
   };

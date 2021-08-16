@@ -1,5 +1,11 @@
 import { makeStyles } from "@material-ui/core";
 import React from "react";
+import { Route, Switch } from "react-router-dom";
+import AccountPage from "../../pages/AccountPage";
+import AdvertsPage from "../../pages/AdvertsPage";
+import HomePage from "../../pages/HomePage";
+import SignInPage from "../../pages/SignInPage";
+import SignUpPage from "../../pages/SignUpPage";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -12,7 +18,23 @@ const Main = () => {
 
   return (
     <main className={classes.main}>
-      <span>Main</span>;
+      <Switch>
+        <Route path="/" exact>
+          <HomePage />
+        </Route>
+        <Route path="/sign-in">
+          <SignInPage />
+        </Route>
+        <Route path="/sign-up">
+          <SignUpPage />
+        </Route>
+        <Route path="/account">
+          <AccountPage />
+        </Route>
+        <Route path="/adverts">
+          <AdvertsPage />
+        </Route>
+      </Switch>
     </main>
   );
 };
