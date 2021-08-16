@@ -108,9 +108,9 @@ const Navbar = () => {
   };
 
   return (
-    <header>
-      <AppBar>{mobileView ? displayMobile() : displayDesktop()}</AppBar>
-    </header>
+    <AppBar position="sticky">
+      {mobileView ? displayMobile() : displayDesktop()}
+    </AppBar>
   );
 };
 
