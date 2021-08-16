@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     flexShrink: "0",
+    backgroundColor: theme.palette.primary.main,
   },
 }));
 
@@ -15,7 +16,9 @@ const Footer = () => {
 
   return (
     <footer className={classes.footer}>
-      <Typography>Sell It created by Bartosz Grochal</Typography>
+      <Typography color="textPrimary">
+        Sell It created by Bartosz Grochal
+      </Typography>
     </footer>
   );
 };

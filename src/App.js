@@ -10,6 +10,9 @@ import Main from "./components/layout/Main";
 const theme = createTheme({
   palette: {
     primary: blue,
+    text: {
+      primary: "#FFFFFF",
+    },
   },
 });
 
