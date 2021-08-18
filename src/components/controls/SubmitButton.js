@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@material-ui/core";
 
-export default function Button(props) {
+const SubmitButton = (props) => {
   const { text, size, color, variant, onClick, ...other } = props;
 
   return (
@@ -15,4 +15,6 @@ export default function Button(props) {
       {text}
     </Button>
   );
-}
+};
+
+export default SubmitButton;

@@ -1,5 +1,6 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import React from "react";
+import SignInForm from "../components/user/SignInForm";
 
 const useStyles = makeStyles({
   root: {
@@ -14,12 +15,12 @@ const SignInPage = () => {
     <Grid
       className={classes.root}
       container
-      direction="column"
+      direction="row"
       alignItems="center"
       justifyContent="center"
     >
       <Grid item xs={3}>
-        <span>Sign In Page</span>
+        <SignInForm />
       </Grid>
     </Grid>
   );
