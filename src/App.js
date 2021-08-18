@@ -10,10 +10,6 @@ import Main from "./components/layout/Main";
 const theme = createTheme({
   palette: {
     primary: blue,
-    text: {
-      primary: "#000000",
-      secondary: "#ffffff",
-    },
   },
 });
 

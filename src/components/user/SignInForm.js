@@ -7,9 +7,6 @@ import Form from "../utils/Form";
 
 const useStyles = makeStyles({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     padding: "15px",
   },
 });
@@ -27,13 +24,13 @@ const SignInForm = () => {
       <Form>
         <Grid container direction="column" spacing={2}>
           <Grid item>
-            <Input name="email" label="Email" />
+            <Input name="email" label="Email" fullWidth />
           </Grid>
           <Grid item>
-            <Input name="password" label="Password" />
+            <Input name="password" label="Password" fullWidth />
           </Grid>
           <Grid item>
-            <SubmitButton type="submit" text="Sign in" />
+            <SubmitButton type="submit" text="Sign in" fullWidth />
           </Grid>
         </Grid>
       </Form>
