@@ -19,15 +19,53 @@ const initialValues = {
 const SignInForm = () => {
   const classes = useStyles();
 
+  const validate = (values) => {
+    let temp = { ...errors };
+    if ("email" in values)
+      temp.email = /$^|.+@.+..+/.test(values.email)
+        ? ""
+        : "Email is not valid.";
+    if ("password" in values)
+      temp.password =
+        values.password.length != 0 ? "" : "This field is required.";
+    setErrors({
+      ...temp,
+    });
+  };
+
+  const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
+    useForm(initialValues, validate);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate(values)) {
+      resetForm();
+    }
+  };
+
   return (
     <Paper className={classes.root}>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Grid container direction="column" spacing={2}>
           <Grid item>
-            <Input name="email" label="Email" fullWidth />
+            <Input
+              name="email"
+              label="Email"
+              value={values.email}
+              onChange={handleInputChange}
+              error={errors.email}
+              fullWidth
+            />
           </Grid>
           <Grid item>
-            <Input name="password" label="Password" fullWidth />
+            <Input
+              name="password"
+              label="Password"
+              value={values.password}
+              onChange={handleInputChange}
+              error={errors.password}
+              fullWidth
+            />
           </Grid>
           <Grid item>
             <SubmitButton type="submit" text="Sign in" fullWidth />
