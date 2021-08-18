@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     width: 250,
   },
   navButton: {
-    color: theme.palette.text.secondary,
+    color: "#ffffff",
   },
 }));
 
