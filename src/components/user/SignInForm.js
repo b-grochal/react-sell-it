@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
+import {
+  Grid,
+  LinearProgress,
+  makeStyles,
+  Paper,
+  Typography,
+} from "@material-ui/core";
 import Input from "../controls/Input";
 import SubmitButton from "../controls/SubmitButton";
 import useForm from "../../hooks/useForm";
@@ -65,39 +71,45 @@ const SignInForm = () => {
   }, [userToken]);
 
   return (
-    <Paper className={classes.root}>
-      <Typography variant="h6" align="center" className={classes.heading}>
-        Sign in
-      </Typography>
-      <Form onSubmit={handleSubmit}>
-        <Grid container direction="column" spacing={2}>
-          <Grid item>
-            <Input
-              name="email"
-              label="Email"
-              value={values.email}
-              onChange={handleInputChange}
-              error={errors.email}
-              fullWidth
-            />
-          </Grid>
-          <Grid item>
-            <Input
-              name="password"
-              label="Password"
-              value={values.password}
-              onChange={handleInputChange}
-              error={errors.password}
-              type="password"
-              fullWidth
-            />
-          </Grid>
-          <Grid item>
-            <SubmitButton type="submit" text="Sign in" fullWidth />
-          </Grid>
-        </Grid>
-      </Form>
-    </Paper>
+    <>
+      {loading ? (
+        <LinearProgress />
+      ) : (
+        <Paper className={classes.root}>
+          <Typography variant="h6" align="center" className={classes.heading}>
+            Sign in
+          </Typography>
+          <Form onSubmit={handleSubmit}>
+            <Grid container direction="column" spacing={2}>
+              <Grid item>
+                <Input
+                  name="email"
+                  label="Email"
+                  value={values.email}
+                  onChange={handleInputChange}
+                  error={errors.email}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item>
+                <Input
+                  name="password"
+                  label="Password"
+                  value={values.password}
+                  onChange={handleInputChange}
+                  error={errors.password}
+                  type="password"
+                  fullWidth
+                />
+              </Grid>
+              <Grid item>
+                <SubmitButton type="submit" text="Sign in" fullWidth />
+              </Grid>
+            </Grid>
+          </Form>
+        </Paper>
+      )}
+    </>
   );
 };
 
