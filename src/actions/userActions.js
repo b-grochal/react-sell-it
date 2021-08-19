@@ -31,9 +31,12 @@ export const signUp = (email, password) => async (dispatch) => {
 export const signIn = (email, password) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
   try {
-    const { data } = await Axios.post("/api/users/signin", { email, password });
-    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
-    localStorage.setItem("userInfo", JSON.stringify(data));
+    const { data } = await Axios.post(
+      "http://localhost:5001/sell-it-747c3/us-central1/api/sign-in",
+      { email, password }
+    );
+    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data.token });
+    localStorage.setItem("userToken", data.token);
   } catch (error) {
     dispatch({
       type: USER_SIGNIN_FAIL,
