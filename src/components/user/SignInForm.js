@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, makeStyles, Paper } from "@material-ui/core";
+import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 import Input from "../controls/Input";
 import SubmitButton from "../controls/SubmitButton";
 import useForm from "../../hooks/useForm";
@@ -12,6 +12,9 @@ import { useHistory } from "react-router";
 const useStyles = makeStyles({
   root: {
     padding: "15px",
+  },
+  heading: {
+    paddingBottom: "10px",
   },
 });
 
@@ -63,6 +66,9 @@ const SignInForm = () => {
 
   return (
     <Paper className={classes.root}>
+      <Typography variant="h6" align="center" className={classes.heading}>
+        Sign in
+      </Typography>
       <Form onSubmit={handleSubmit}>
         <Grid container direction="column" spacing={2}>
           <Grid item>
@@ -82,6 +88,7 @@ const SignInForm = () => {
               value={values.password}
               onChange={handleInputChange}
               error={errors.password}
+              type="password"
               fullWidth
             />
           </Grid>
