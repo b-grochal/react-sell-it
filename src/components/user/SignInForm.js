@@ -7,6 +7,7 @@ import Form from "../utils/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../actions/userActions";
 import { CompareArrowsOutlined } from "@material-ui/icons";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   root: {
@@ -24,6 +25,7 @@ const SignInForm = () => {
 
   const userSignIn = useSelector((state) => state.userSignIn);
   const { userToken, loading, error } = userSignIn;
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -48,19 +50,14 @@ const SignInForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitting form");
-    console.log(values);
-    console.log(errors);
     if (validate(values)) {
-      console.log("Dispatching action");
       dispatch(signIn(values.email, values.password));
     }
   };
 
   useEffect(() => {
     if (userToken) {
-      console.log("User token effect.");
-      console.log(userToken);
+      history.push("/account");
     }
   }, [userToken]);
 
