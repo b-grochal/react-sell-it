@@ -9,24 +9,43 @@ import {
   USER_LOGOUT,
 } from "../constants/userConstants";
 
-export const signUp = (email, password) => async (dispatch) => {
-  dispatch({ type: USER_SIGNUP_REQUEST, payload: { email, password } });
-  try {
-    const { data } = await Axios.post("/api/users/register", {
-      email,
-      password,
-    });
-    dispatch({ type: USER_SIGNUP_SUCCESS, payload: data });
-  } catch (error) {
+export const signUp =
+  (firstName, familyName, phoneNumber, email, password, confirmPassword) =>
+  async (dispatch) => {
     dispatch({
-      type: USER_SIGNUP_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      type: USER_SIGNUP_REQUEST,
+      payload: {
+        firstName,
+        familyName,
+        phoneNumber,
+        email,
+        password,
+        confirmPassword,
+      },
     });
-  }
-};
+    try {
+      const { data } = await Axios.post(
+        "http://localhost:5001/sell-it-747c3/us-central1/api/sign-up",
+        {
+          firstName,
+          familyName,
+          phoneNumber,
+          email,
+          password,
+          confirmPassword,
+        }
+      );
+      dispatch({ type: USER_SIGNUP_SUCCESS, payload: data.message });
+    } catch (error) {
+      dispatch({
+        type: USER_SIGNUP_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const signIn = (email, password) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
