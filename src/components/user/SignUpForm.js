@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../actions/userActions";
 import { CompareArrowsOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router";
+import { USER_SIGNUP_RESET } from "../../constants/userConstants";
 
 const useStyles = makeStyles({
   root: {
@@ -38,7 +39,7 @@ const SignUpForm = () => {
   const classes = useStyles();
 
   const userSignUp = useSelector((state) => state.userSignUp);
-  const { message, loading, error } = userSignUp;
+  const { registered, loading, error } = userSignUp;
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -90,10 +91,11 @@ const SignUpForm = () => {
   };
 
   useEffect(() => {
-    if (message) {
-      history.push("/sign-in");
+    if (registered) {
+      dispatch({ type: USER_SIGNUP_RESET });
+      resetForm();
     }
-  }, [message]);
+  }, [registered]);
 
   return (
     <>
