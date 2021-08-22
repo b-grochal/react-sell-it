@@ -108,22 +108,41 @@ const Navbar = () => {
         <Button component={Link} to="/adverts" className={classes.navButton}>
           Adverts
         </Button>
-        <Button component={Link} to="/account" className={classes.navButton}>
-          My Account
-        </Button>
-        <Button
-          component={Link}
-          onClick={logoutHandler}
-          className={classes.navButton}
-        >
-          Log Out
-        </Button>
-        <Button component={Link} to="/sign-in" className={classes.navButton}>
-          Sign in
-        </Button>
-        <Button component={Link} to="/sign-up" className={classes.navButton}>
-          Sign up
-        </Button>
+        {userToken ? (
+          <>
+            <Button
+              component={Link}
+              to="/account"
+              className={classes.navButton}
+            >
+              My Account
+            </Button>
+            <Button
+              component={Link}
+              onClick={logoutHandler}
+              className={classes.navButton}
+            >
+              Log Out
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button
+              component={Link}
+              to="/sign-in"
+              className={classes.navButton}
+            >
+              Sign in
+            </Button>
+            <Button
+              component={Link}
+              to="/sign-up"
+              className={classes.navButton}
+            >
+              Sign up
+            </Button>
+          </>
+        )}
       </>
     );
   };
