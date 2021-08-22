@@ -15,6 +15,7 @@ import ListItemLink from "../utils/ListItemLink";
 import { Link } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [state, setState] = useState({
     mobileView: false,
     drawerOpen: false,
@@ -45,6 +47,7 @@ const Navbar = () => {
   const { userToken } = userSignIn;
   const dispatch = useDispatch();
   const logoutHandler = () => {
+    history.push("/");
     dispatch(logout());
   };
 
