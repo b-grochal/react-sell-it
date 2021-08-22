@@ -13,6 +13,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import React, { useState, useEffect } from "react";
 import ListItemLink from "../utils/ListItemLink";
 import { Link } from "react-router-dom";
+import { logout } from "../../actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -38,6 +40,13 @@ const Navbar = () => {
   });
 
   const { mobileView, drawerOpen } = state;
+
+  const userSignIn = useSelector((state) => state.userSignIn);
+  const { userToken } = userSignIn;
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
 
   useEffect(() => {
     const setResponsiveness = () => {
@@ -102,7 +111,11 @@ const Navbar = () => {
         <Button component={Link} to="/account" className={classes.navButton}>
           My Account
         </Button>
-        <Button component={Link} to="/" className={classes.navButton}>
+        <Button
+          component={Link}
+          onClick={logoutHandler}
+          className={classes.navButton}
+        >
           Log Out
         </Button>
         <Button component={Link} to="/sign-in" className={classes.navButton}>

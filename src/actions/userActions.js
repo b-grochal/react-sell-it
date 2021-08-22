@@ -68,7 +68,7 @@ export const signIn = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
-  localStorage.removeItem("userInfo");
+  localStorage.removeItem("userToken");
   dispatch({ type: USER_LOGOUT });
-  document.location.href = "/signin";
+  document.location.href = "/";
 };
