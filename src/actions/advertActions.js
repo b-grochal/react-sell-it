@@ -17,19 +17,20 @@ import {
   ADVERT_DELETE_SUCCESS,
 } from "../constants/advertConstants";
 
-export const listAdverts =
-  ({ name = "" }) =>
-  async (dispatch) => {
-    dispatch({
-      type: ADVERT_LIST_REQUEST,
-    });
-    try {
-      const { data } = await Axios.get(`/api/products?&name=${name}`);
-      dispatch({ type: ADVERT_LIST_SUCCESS, payload: data });
-    } catch (error) {
-      dispatch({ type: ADVERT_LIST_FAIL, payload: error.message });
-    }
-  };
+export const listAdverts = () => async (dispatch) => {
+  dispatch({
+    type: ADVERT_LIST_REQUEST,
+  });
+  try {
+    const { data } = await Axios.get(
+      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/`
+    );
+    console.log(data);
+    dispatch({ type: ADVERT_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: ADVERT_LIST_FAIL, payload: error.message });
+  }
+};
 
 export const detailsAdvert = (advertId) => async (dispatch) => {
   dispatch({ type: ADVERT_DETAILS_REQUEST, payload: advertId });
@@ -74,7 +75,7 @@ export const createAdvert = () => async (dispatch, getState) => {
 };
 
 export const updateAdvert = (advert) => async (dispatch, getState) => {
-  dispatch({ type: ADVERT_UPDATE_REQUEST, payload: product });
+  dispatch({ type: ADVERT_UPDATE_REQUEST, payload: advert });
   const {
     userSignin: { userInfo },
   } = getState();

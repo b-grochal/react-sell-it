@@ -27,9 +27,10 @@ export const advertListReducer = (
     case ADVERT_LIST_REQUEST:
       return { loading: true };
     case ADVERT_LIST_SUCCESS:
+      console.log(action);
       return {
         loading: false,
-        adverts: action.payload.adverts,
+        adverts: action.payload,
       };
     case ADVERT_LIST_FAIL:
       return { loading: false, error: action.payload };
