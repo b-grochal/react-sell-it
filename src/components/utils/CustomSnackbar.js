@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
+import { Alert } from "@material-ui/lab";
+import { makeStyles } from "@material-ui/core/styles";
 import { setSnackbar } from "../../actions/snackbarActions";
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 const CustomSnackbar = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const snackbar = useSelectore((state) => state.snackbar);
+  const snackbar = useSelector((state) => state.snackbar);
   const { snackbarOpen, snackbarType, snackbarMessage } = snackbar;
 
   const handleClose = (event, reason) => {
@@ -32,6 +33,7 @@ const CustomSnackbar = () => {
         open={snackbarOpen}
         autoHideDuration={3000}
         onClose={handleClose}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert
           elevation={6}
@@ -45,3 +47,5 @@ const CustomSnackbar = () => {
     </div>
   );
 };
+
+export default CustomSnackbar;

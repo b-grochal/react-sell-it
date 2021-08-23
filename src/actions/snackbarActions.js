@@ -4,9 +4,11 @@ export const setSnackbar = (
   snackbarOpen,
   snackbarType = "success",
   snackbarMessage = ""
-) => {
-  type: SET_SNACKBAR;
+) => ({
+  type: SET_SNACKBAR,
   payload: {
-    snackbarOpen, snackbarType, snackbarMessage;
-  }
-};
+    snackbarOpen,
+    snackbarType,
+    snackbarMessage,
+  },
+});

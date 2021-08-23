@@ -8,6 +8,7 @@ import {
   USER_SIGNIN_SUCCESS,
   USER_LOGOUT,
 } from "../constants/userConstants";
+import { setSnackbar } from "./snackbarActions";
 
 export const signUp =
   (firstName, familyName, phoneNumber, email, password, confirmPassword) =>
@@ -36,6 +37,7 @@ export const signUp =
         }
       );
       dispatch({ type: USER_SIGNUP_SUCCESS, payload: data.message });
+      dispatch(setSnackbar(true, "success", "You have signed up successfully"));
     } catch (error) {
       dispatch({
         type: USER_SIGNUP_FAIL,
@@ -44,6 +46,7 @@ export const signUp =
             ? error.response.data.message
             : error.message,
       });
+      dispatch(setSnackbar(true, "error", "An error has occurred"));
     }
   };
 
@@ -64,6 +67,7 @@ export const signIn = (email, password) => async (dispatch) => {
           ? error.response.data.message
           : error.message,
     });
+    dispatch(setSnackbar(true, "error", "An error has occurred"));
   }
 };
 

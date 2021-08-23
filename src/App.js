@@ -6,6 +6,7 @@ import blue from "@material-ui/core/colors/blue";
 import { BrowserRouter } from "react-router-dom";
 import Footer from "./components/layout/Footer";
 import Main from "./components/layout/Main";
+import CustomSnackbar from "./components/utils/CustomSnackbar";
 
 const theme = createTheme({
   palette: {
@@ -28,6 +29,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <CustomSnackbar />
         <Navbar />
         <Main />
         <Footer />
