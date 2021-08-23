@@ -7,11 +7,17 @@ import {
   advertListReducer,
   advertUpdateReducer,
 } from "../reducers/advertReducers";
+import { snackbarReducer } from "../reducers/snackbarReducer";
 import { userSignUpReducer, userSignInReducer } from "../reducers/userReducers";
 
 const initialState = {
   userSignIn: {
     userToken: localStorage.getItem("userToken"),
+  },
+  snackbar: {
+    snackbarOpen: false,
+    snackbarType: "success",
+    snackbarMessage: "",
   },
 };
 
@@ -23,6 +29,7 @@ const reducer = combineReducers({
   advertUpdate: advertUpdateReducer,
   userSignUp: userSignUpReducer,
   userSignIn: userSignInReducer,
+  snackbar: snackbarReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
