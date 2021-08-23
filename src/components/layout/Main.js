@@ -6,6 +6,7 @@ import AdvertsPage from "../../pages/AdvertsPage";
 import HomePage from "../../pages/HomePage";
 import SignInPage from "../../pages/SignInPage";
 import SignUpPage from "../../pages/SignUpPage";
+import AuthRoute from "../../utils/AuthRoute";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -28,9 +29,9 @@ const Main = () => {
         <Route path="/sign-up">
           <SignUpPage />
         </Route>
-        <Route path="/account">
+        <AuthRoute path="/account">
           <AccountPage />
-        </Route>
+        </AuthRoute>
         <Route path="/adverts">
           <AdvertsPage />
         </Route>

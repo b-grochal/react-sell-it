@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
     padding: "10px 0",
   },
+  text: {
+    color: "#ffffff",
+  },
 }));
 
 const Footer = () => {
@@ -17,7 +20,7 @@ const Footer = () => {
 
   return (
     <footer className={classes.footer}>
-      <Typography color="textSecondary">
+      <Typography className={classes.text}>
         Sell It created by Bartosz Grochal
       </Typography>
     </footer>
