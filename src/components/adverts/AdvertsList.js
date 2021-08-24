@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listAdverts } from "../../actions/advertActions";
 import { Grid, Container } from "@material-ui/core";
+import Advert from "./Advert";
 
 const AdvertsList = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const AdvertsList = () => {
         <Grid container spacing={3}>
           {adverts.map((advert) => (
             <Grid item xs={12} md={6} lg={4} key={advert.advertId}>
-              <span>{advert.name}</span>
+              <Advert advert={advert} />
             </Grid>
           ))}
         </Grid>
