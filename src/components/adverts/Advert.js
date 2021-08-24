@@ -7,6 +7,7 @@ import {
   CardActions,
   Button,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const Advert = ({ advert }) => {
   return (
@@ -17,7 +18,9 @@ const Advert = ({ advert }) => {
         <Typography>{advert.price}</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button component={Link} to={`adverts/${advert.advertId}`} size="small">
+          Detials
+        </Button>
       </CardActions>
     </Card>
   );
