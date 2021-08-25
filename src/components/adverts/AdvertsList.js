@@ -1,10 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listAdverts } from "../../actions/advertActions";
-import { Grid, Container } from "@material-ui/core";
+import { Grid, Container, makeStyles } from "@material-ui/core";
 import Advert from "./Advert";
 
+const useStyles = makeStyles((theme) => ({
+  container: {
+    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+  },
+}));
+
 const AdvertsList = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const advertList = useSelector((state) => state.advertList);
   const { adverts, loading, error } = advertList;
@@ -14,7 +22,7 @@ const AdvertsList = () => {
   }, []);
 
   return (
-    <Container>
+    <Container className={classes.container}>
       {loading ? (
         <span>Loading</span>
       ) : (

@@ -12,10 +12,10 @@ import { Link } from "react-router-dom";
 const Advert = ({ advert }) => {
   return (
     <Card>
+      <CardHeader title={advert.name} />
       <CardContent>
-        <Typography>{advert.name}</Typography>
-        <Typography>{advert.description}</Typography>
-        <Typography>{advert.price}</Typography>
+        <Typography noWrap={true}>{advert.description}</Typography>
+        <Typography>{`${advert.price} $`}</Typography>
       </CardContent>
       <CardActions>
         <Button component={Link} to={`adverts/${advert.advertId}`} size="small">
