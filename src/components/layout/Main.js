@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import AccountPage from "../../pages/AccountPage";
+import AdvertDetailsPage from "../../pages/AdvertDetailsPage";
 import AdvertsPage from "../../pages/AdvertsPage";
 import HomePage from "../../pages/HomePage";
 import SignInPage from "../../pages/SignInPage";
@@ -32,9 +33,10 @@ const Main = () => {
         <AuthRoute path="/account">
           <AccountPage />
         </AuthRoute>
-        <Route path="/adverts">
+        <Route path="/adverts" exact>
           <AdvertsPage />
         </Route>
+        <Route path="/adverts/:id" component={AdvertDetailsPage} />
       </Switch>
     </main>
   );
