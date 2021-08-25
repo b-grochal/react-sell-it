@@ -35,8 +35,11 @@ export const listAdverts = () => async (dispatch) => {
 export const detailsAdvert = (advertId) => async (dispatch) => {
   dispatch({ type: ADVERT_DETAILS_REQUEST, payload: advertId });
   try {
-    const { data } = await Axios.get(`/api/products/${advertId}`);
+    const { data } = await Axios.get(
+      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/${advertId}`
+    );
     dispatch({ type: ADVERT_DETAILS_SUCCESS, payload: data });
+    console.log(data);
   } catch (error) {
     dispatch({
       type: ADVERT_DETAILS_FAIL,
