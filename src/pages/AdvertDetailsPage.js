@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { detailsAdvert } from "../actions/advertActions";
 import { useHistory } from "react-router-dom";
 import AdvertDetails from "../components/adverts/AdvertDetails";
+import SellerDetails from "../components/adverts/SellerDetails";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -38,9 +39,7 @@ const AdvertDetailsPage = (props) => {
             <AdvertDetails advert={advert} />
           </Grid>
           <Grid item xs={12} md={4}>
-            <Paper className={classes.paper}>
-              <span>Adverts details {advertId}</span>;
-            </Paper>
+            <SellerDetails seller={advert.user} />
           </Grid>
           <Grid item container xs={12} justifyContent="flex-end">
             <Button color="primary" variant="contained" onClick={goBackHandler}>
