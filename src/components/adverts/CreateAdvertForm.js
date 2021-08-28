@@ -46,7 +46,7 @@ const CreateAdvertForm = () => {
     if ("description" in values)
       temp.description = values.description ? "" : "This field is required.";
     if ("price" in values)
-      temp.price = values.price < 0 ? "" : "Price must be a positive number .";
+      temp.price = values.price > 0 ? "" : "Price must be a positive number .";
 
     setErrors({
       ...temp,
@@ -60,6 +60,7 @@ const CreateAdvertForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    values.price = parseFloat(values.price);
     if (validate(values)) {
       dispatch(createAdvert(values));
     }
@@ -95,7 +96,7 @@ const CreateAdvertForm = () => {
               <Grid item>
                 <TextArea
                   name="description"
-                  placeholder="Description"
+                  label="Description"
                   value={values.description}
                   onChange={handleInputChange}
                   error={errors.description}
@@ -111,7 +112,7 @@ const CreateAdvertForm = () => {
                   error={errors.price}
                   fullWidth
                   type="number"
-                  InputProps={{ inputProps: { min: 0 } }}
+                  InputProps={{ inputProps: { min: 0, step: 0.01 } }}
                 />
               </Grid>
               <Grid item>

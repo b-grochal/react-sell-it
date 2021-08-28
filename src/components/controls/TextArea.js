@@ -10,6 +10,10 @@ const TextArea = (props) => {
       multiline
       rows={5}
       rowsMax={10}
+      label={label}
+      name={name}
+      value={value}
+      onChange={onChange}
       {...other}
       {...(error && { error: true, helperText: error })}
     />
