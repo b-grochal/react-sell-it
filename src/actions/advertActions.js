@@ -55,12 +55,16 @@ export const detailsAdvert = (advertId) => async (dispatch) => {
 export const createAdvert = (advert) => async (dispatch, getState) => {
   dispatch({ type: ADVERT_CREATE_REQUEST });
   const {
-    userSignin: { userInfo },
+    userSignIn: { userToken },
   } = getState();
   try {
-    const { data } = await Axios.post("/api/products", advert, {
-      headers: { Authorization: `Bearer ${userInfo.token}` },
-    });
+    const { data } = await Axios.post(
+      "http://localhost:5001/sell-it-747c3/us-central1/api/adverts",
+      advert,
+      {
+        headers: { Authorization: `Bearer ${userToken}` },
+      }
+    );
     dispatch({
       type: ADVERT_CREATE_SUCCESS,
       payload: data.product,
