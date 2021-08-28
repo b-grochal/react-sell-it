@@ -16,6 +16,7 @@ import {
   ADVERT_DELETE_FAIL,
   ADVERT_DELETE_SUCCESS,
 } from "../constants/advertConstants";
+import { setSnackbar } from "./snackbarActions";
 
 export const listAdverts = () => async (dispatch) => {
   dispatch({
@@ -51,29 +52,27 @@ export const detailsAdvert = (advertId) => async (dispatch) => {
   }
 };
 
-export const createAdvert = () => async (dispatch, getState) => {
+export const createAdvert = (advert) => async (dispatch, getState) => {
   dispatch({ type: ADVERT_CREATE_REQUEST });
   const {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.post(
-      "/api/products",
-      {},
-      {
-        headers: { Authorization: `Bearer ${userInfo.token}` },
-      }
-    );
+    const { data } = await Axios.post("/api/products", advert, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
     dispatch({
       type: ADVERT_CREATE_SUCCESS,
       payload: data.product,
     });
+    dispatch(setSnackbar(true, "success", "Advert created successfully"));
   } catch (error) {
     const message =
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message;
     dispatch({ type: ADVERT_CREATE_FAIL, payload: message });
+    dispatch(setSnackbar(true, "error", "An error has occurred"));
   }
 };
 

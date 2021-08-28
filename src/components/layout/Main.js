@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import AccountPage from "../../pages/AccountPage";
 import AdvertDetailsPage from "../../pages/AdvertDetailsPage";
 import AdvertsPage from "../../pages/AdvertsPage";
+import CreateAdvertPage from "../../pages/CreateAdvertPage";
 import HomePage from "../../pages/HomePage";
 import SignInPage from "../../pages/SignInPage";
 import SignUpPage from "../../pages/SignUpPage";
@@ -32,6 +33,9 @@ const Main = () => {
         </Route>
         <AuthRoute path="/account">
           <AccountPage />
+        </AuthRoute>
+        <AuthRoute path="/adverts/create">
+          <CreateAdvertPage />
         </AuthRoute>
         <Route path="/adverts" exact>
           <AdvertsPage />
