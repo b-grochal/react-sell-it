@@ -8,6 +8,7 @@ import CreateAdvertPage from "../../pages/CreateAdvertPage";
 import HomePage from "../../pages/HomePage";
 import SignInPage from "../../pages/SignInPage";
 import SignUpPage from "../../pages/SignUpPage";
+import UpdateAdvertPage from "../../pages/UpdateAdvertPage";
 import AuthRoute from "../../utils/AuthRoute";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +38,7 @@ const Main = () => {
         <AuthRoute path="/adverts/create">
           <CreateAdvertPage />
         </AuthRoute>
+        <AuthRoute path="/adverts/:id/update" component={UpdateAdvertPage} />
         <Route path="/adverts" exact>
           <AdvertsPage />
         </Route>
