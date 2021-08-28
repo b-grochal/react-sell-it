@@ -13,6 +13,7 @@ import Form from "../utils/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { createAdvert } from "../../actions/advertActions";
 import { useHistory } from "react-router";
+import TextArea from "../controls/TextArea";
 
 const useStyles = makeStyles({
   root: {
@@ -88,6 +89,16 @@ const CreateAdvertForm = () => {
                   value={values.name}
                   onChange={handleInputChange}
                   error={errors.name}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item>
+                <TextArea
+                  name="description"
+                  placeholder="Description"
+                  value={values.description}
+                  onChange={handleInputChange}
+                  error={errors.description}
                   fullWidth
                 />
               </Grid>
