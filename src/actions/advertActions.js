@@ -37,7 +37,7 @@ export const detailsAdvert = (advertId) => async (dispatch) => {
   dispatch({ type: ADVERT_DETAILS_REQUEST, payload: advertId });
   try {
     const { data } = await Axios.get(
-      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/${advertId}`
+      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/${advertId}/details`
     );
     dispatch({ type: ADVERT_DETAILS_SUCCESS, payload: data });
     console.log(data);
@@ -80,24 +80,29 @@ export const createAdvert = (advert) => async (dispatch, getState) => {
   }
 };
 
-export const updateAdvert = (advert) => async (dispatch, getState) => {
-  dispatch({ type: ADVERT_UPDATE_REQUEST, payload: advert });
-  const {
-    userSignin: { userInfo },
-  } = getState();
-  try {
-    const { data } = await Axios.put(`/api/products/${advert._id}`, advert, {
-      headers: { Authorization: `Bearer ${userInfo.token}` },
-    });
-    dispatch({ type: ADVERT_UPDATE_SUCCESS, payload: data });
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
-    dispatch({ type: ADVERT_UPDATE_FAIL, error: message });
-  }
-};
+export const updateAdvert =
+  (advertId, advertData) => async (dispatch, getState) => {
+    dispatch({ type: ADVERT_UPDATE_REQUEST, payload: advertData });
+    const {
+      userSignIn: { userToken },
+    } = getState();
+    try {
+      const { data } = await Axios.put(
+        `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/${advertId}`,
+        advertData,
+        {
+          headers: { Authorization: `Bearer ${userToken}` },
+        }
+      );
+      dispatch({ type: ADVERT_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({ type: ADVERT_UPDATE_FAIL, error: message });
+    }
+  };
 
 export const deleteAdvert = (advertId) => async (dispatch, getState) => {
   dispatch({ type: ADVERT_DELETE_REQUEST, payload: advertId });

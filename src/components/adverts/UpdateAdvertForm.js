@@ -48,13 +48,21 @@ const UpdateAdvertForm = ({ advert }) => {
   };
 
   const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
-    useForm(advert, validate);
+    useForm(
+      {
+        name: advert.name,
+        description: advert.description,
+        price: advert.price,
+      },
+      validate
+    );
 
   const handleSubmit = (e) => {
+    console.log(values);
     e.preventDefault();
     values.price = parseFloat(values.price);
     if (validate(values)) {
-      dispatch(updateAdvert(values));
+      dispatch(updateAdvert(advert.advertId, values));
     }
   };
 
