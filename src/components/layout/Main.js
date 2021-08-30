@@ -9,6 +9,7 @@ import HomePage from "../../pages/HomePage";
 import SignInPage from "../../pages/SignInPage";
 import SignUpPage from "../../pages/SignUpPage";
 import UpdateAdvertPage from "../../pages/UpdateAdvertPage";
+import UserAdvertsPage from "../../pages/UserAdvertsPage";
 import AuthRoute from "../../utils/AuthRoute";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,8 +33,8 @@ const Main = () => {
         <Route path="/sign-up">
           <SignUpPage />
         </Route>
-        <AuthRoute path="/account">
-          <AccountPage />
+        <AuthRoute path="/adverts/my-adverts">
+          <UserAdvertsPage />
         </AuthRoute>
         <AuthRoute path="/adverts/create">
           <CreateAdvertPage />

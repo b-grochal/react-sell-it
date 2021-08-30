@@ -115,7 +115,7 @@ const Navbar = () => {
           <>
             <Button
               component={Link}
-              to="/account"
+              to="/adverts/my-adverts"
               className={classes.navButton}
             >
               My Account
