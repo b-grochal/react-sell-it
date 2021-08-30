@@ -2,6 +2,9 @@ import {
   ADVERT_LIST_REQUEST,
   ADVERT_LIST_SUCCESS,
   ADVERT_LIST_FAIL,
+  USER_ADVERT_LIST_REQUEST,
+  USER_ADVERT_LIST_SUCCESS,
+  USER_ADVERT_LIST_FAIL,
   ADVERT_DETAILS_REQUEST,
   ADVERT_DETAILS_SUCCESS,
   ADVERT_DETAILS_FAIL,
@@ -33,6 +36,26 @@ export const advertListReducer = (
         adverts: action.payload,
       };
     case ADVERT_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const userAdvertListReducer = (
+  state = { loading: true, adverts: [] },
+  action
+) => {
+  switch (action.type) {
+    case USER_ADVERT_LIST_REQUEST:
+      return { loading: true };
+    case USER_ADVERT_LIST_SUCCESS:
+      console.log(action);
+      return {
+        loading: false,
+        adverts: action.payload,
+      };
+    case USER_ADVERT_LIST_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

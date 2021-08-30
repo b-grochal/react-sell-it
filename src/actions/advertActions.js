@@ -33,6 +33,21 @@ export const listAdverts = () => async (dispatch) => {
   }
 };
 
+export const listUserAdverts = () => async (dispatch) => {
+  dispatch({
+    type: USER_ADVERT_LIST_REQUEST,
+  });
+  try {
+    const { data } = await Axios.get(
+      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/my-adverts`
+    );
+    console.log(data);
+    dispatch({ type: USER_ADVERT_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: USER_ADVERT_LIST_FAIL, payload: error.message });
+  }
+};
+
 export const detailsAdvert = (advertId) => async (dispatch) => {
   dispatch({ type: ADVERT_DETAILS_REQUEST, payload: advertId });
   try {
