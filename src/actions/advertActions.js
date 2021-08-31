@@ -131,12 +131,15 @@ export const updateAdvert =
 export const deleteAdvert = (advertId) => async (dispatch, getState) => {
   dispatch({ type: ADVERT_DELETE_REQUEST, payload: advertId });
   const {
-    userSignin: { userInfo },
+    userSignIn: { userToken },
   } = getState();
   try {
-    const { data } = Axios.delete(`/api/products/${advertId}`, {
-      headers: { Authorization: `Bearer ${userInfo.token}` },
-    });
+    const { data } = Axios.delete(
+      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/${advertId}`,
+      {
+        headers: { Authorization: `Bearer ${userToken}` },
+      }
+    );
     dispatch({ type: ADVERT_DELETE_SUCCESS });
   } catch (error) {
     const message =
