@@ -11,7 +11,7 @@ import SubmitButton from "../controls/SubmitButton";
 import useForm from "../../hooks/useForm";
 import Form from "../utils/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { signUp } from "../../actions/userActions";
+import { signUpAction } from "../../actions/userActions";
 import { CompareArrowsOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router";
 import { USER_SIGNUP_RESET } from "../../constants/userConstants";
@@ -78,7 +78,7 @@ const SignUpForm = () => {
     e.preventDefault();
     if (validate(values)) {
       dispatch(
-        signUp(
+        signUpAction(
           values.firstName,
           values.familyName,
           values.phoneNumber,

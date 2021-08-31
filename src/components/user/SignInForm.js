@@ -11,7 +11,7 @@ import SubmitButton from "../controls/SubmitButton";
 import useForm from "../../hooks/useForm";
 import Form from "../utils/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn } from "../../actions/userActions";
+import { signInAction } from "../../actions/userActions";
 import { CompareArrowsOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router";
 
@@ -60,7 +60,7 @@ const SignInForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate(values)) {
-      dispatch(signIn(values.email, values.password));
+      dispatch(signInAction(values.email, values.password));
     }
   };
 

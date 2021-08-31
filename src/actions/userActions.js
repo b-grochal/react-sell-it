@@ -9,8 +9,9 @@ import {
   USER_LOGOUT,
 } from "../constants/userConstants";
 import { setSnackbar } from "./snackbarActions";
+import { signUp, signIn } from "../services/users";
 
-export const signUp =
+export const signUpAction =
   (firstName, familyName, phoneNumber, email, password, confirmPassword) =>
   async (dispatch) => {
     dispatch({
@@ -25,16 +26,13 @@ export const signUp =
       },
     });
     try {
-      const { data } = await Axios.post(
-        "http://localhost:5001/sell-it-747c3/us-central1/api/sign-up",
-        {
-          firstName,
-          familyName,
-          phoneNumber,
-          email,
-          password,
-          confirmPassword,
-        }
+      const { data } = await signUp(
+        firstName,
+        familyName,
+        phoneNumber,
+        email,
+        password,
+        confirmPassword
       );
       dispatch({ type: USER_SIGNUP_SUCCESS, payload: data.message });
       dispatch(setSnackbar(true, "success", "You have signed up successfully"));
@@ -50,13 +48,10 @@ export const signUp =
     }
   };
 
-export const signIn = (email, password) => async (dispatch) => {
+export const signInAction = (email, password) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
   try {
-    const { data } = await Axios.post(
-      "http://localhost:5001/sell-it-747c3/us-central1/api/sign-in",
-      { email, password }
-    );
+    const { data } = await signIn(email, password);
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data.token });
     localStorage.setItem("userToken", data.token);
   } catch (error) {
