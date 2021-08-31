@@ -36,13 +36,19 @@ export const listAdverts = () => async (dispatch) => {
   }
 };
 
-export const listUserAdverts = () => async (dispatch) => {
+export const listUserAdverts = () => async (dispatch, getState) => {
   dispatch({
     type: USER_ADVERT_LIST_REQUEST,
   });
+  const {
+    userSignIn: { userToken },
+  } = getState();
   try {
     const { data } = await Axios.get(
-      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/my-adverts`
+      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/my-adverts`,
+      {
+        headers: { Authorization: `Bearer ${userToken}` },
+      }
     );
     console.log(data);
     dispatch({ type: USER_ADVERT_LIST_SUCCESS, payload: data });
