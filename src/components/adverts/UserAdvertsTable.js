@@ -15,6 +15,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { Add, Close, EditOutlined } from "@material-ui/icons";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,10 +29,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UserAdvertsTable = () => {
+  const history = useHistory();
   const classes = useStyles();
   const dispatch = useDispatch();
   const userAdvertList = useSelector((state) => state.userAdvertList);
   const { adverts, loading, error } = userAdvertList;
+
+  const deleteHandler = (advert) => {
+    console.log("delete");
+  };
 
   useEffect(() => {
     dispatch(listUserAdverts());
@@ -50,6 +56,7 @@ const UserAdvertsTable = () => {
               color="primary"
               startIcon={<Add />}
               size="large"
+              onClick={() => history.push("/adverts/create")}
             >
               Create
             </Button>
@@ -67,10 +74,14 @@ const UserAdvertsTable = () => {
                   <TableRow>
                     <TableCell>{advert.name}</TableCell>
                     <TableCell align="right">
-                      <Button>
+                      <Button
+                        onClick={() =>
+                          history.push(`/adverts/${advert.advertId}/update`)
+                        }
+                      >
                         <EditOutlined fontSize="small" />
                       </Button>
-                      <Button>
+                      <Button onClick={() => deleteHandler(advert)}>
                         <Close fontSize="small" />
                       </Button>
                     </TableCell>
