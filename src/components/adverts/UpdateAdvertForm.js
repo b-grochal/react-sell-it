@@ -12,7 +12,9 @@ import TextArea from "../controls/TextArea";
 import useForm from "../../hooks/useForm";
 import Form from "../utils/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { updateAdvert } from "../../actions/advertActions";
+import { detailsAdvert, updateAdvert } from "../../actions/advertActions";
+import { useParams } from "react-router-dom";
+import { ADVERT_UPDATE_RESET } from "../../constants/advertConstants";
 
 const useStyles = makeStyles({
   root: {
@@ -24,12 +26,24 @@ const useStyles = makeStyles({
   },
 });
 
-const UpdateAdvertForm = ({ advert }) => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
+const initialValues = {
+  name: "",
+  description: "",
+  price: "",
+};
 
+const UpdateAdvertForm = () => {
+  const classes = useStyles();
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const advertDetails = useSelector((state) => state.advertDetails);
+  const { advert, loading, error } = advertDetails;
   const advertUpdate = useSelector((state) => state.advertUpdate);
-  const { loading, error, success } = advertUpdate;
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = advertUpdate;
 
   const validate = (values) => {
     let temp = { ...errors };
@@ -48,14 +62,7 @@ const UpdateAdvertForm = ({ advert }) => {
   };
 
   const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
-    useForm(
-      {
-        name: advert.name,
-        description: advert.description,
-        price: advert.price,
-      },
-      validate
-    );
+    useForm(initialValues, validate);
 
   const handleSubmit = (e) => {
     console.log(values);
@@ -67,14 +74,22 @@ const UpdateAdvertForm = ({ advert }) => {
   };
 
   useEffect(() => {
-    if (success) {
+    if (!advert || advert.advertId !== id || successUpdate) {
+      dispatch({ type: ADVERT_UPDATE_RESET });
       resetForm();
+      dispatch(detailsAdvert(id));
+    } else {
+      setValues({
+        name: advert.name,
+        description: advert.description,
+        price: advert.price,
+      });
     }
-  }, [success]);
+  }, [advert, successUpdate, id]);
 
   return (
     <>
-      {loading ? (
+      {loading || loadingUpdate ? (
         <LinearProgress />
       ) : (
         <Paper className={classes.root}>
