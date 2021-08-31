@@ -6,6 +6,7 @@ import {
   advertDetailsReducer,
   advertListReducer,
   advertUpdateReducer,
+  userAdvertListReducer,
 } from "../reducers/advertReducers";
 import { snackbarReducer } from "../reducers/snackbarReducer";
 import { userSignUpReducer, userSignInReducer } from "../reducers/userReducers";
@@ -26,6 +27,7 @@ const reducer = combineReducers({
   advertDelete: advertDeleteReducer,
   advertDetails: advertDetailsReducer,
   advertList: advertListReducer,
+  userAdvertList: userAdvertListReducer,
   advertUpdate: advertUpdateReducer,
   userSignUp: userSignUpReducer,
   userSignIn: userSignInReducer,
