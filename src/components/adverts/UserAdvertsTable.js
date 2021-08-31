@@ -50,11 +50,10 @@ const UserAdvertsTable = () => {
         true,
         "Delete the advert",
         `Are you sure you want to delete ${advert.name}?`,
-        console.log
+        () => {
+          dispatch(deleteAdvert(advert.advertId));
+        }
       )
-      // () => {
-      //     dispatch(deleteAdvert(advert.advertId));
-      //   }
     );
   };
 
