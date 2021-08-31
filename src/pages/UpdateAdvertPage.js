@@ -10,16 +10,8 @@ const useStyles = makeStyles({
   },
 });
 
-const UpdateAdvertPage = (props) => {
-  const advertId = props.match.params.id;
+const UpdateAdvertPage = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const advertDetails = useSelector((state) => state.advertDetails);
-  const { advert, loading, error } = advertDetails;
-
-  useEffect(() => {
-    dispatch(detailsAdvert(advertId));
-  }, []);
 
   return (
     <Grid
@@ -30,11 +22,7 @@ const UpdateAdvertPage = (props) => {
       justifyContent="center"
     >
       <Grid item xs={3}>
-        {loading ? (
-          <span>Loading</span>
-        ) : (
-          !error && <UpdateAdvertForm advert={advert} />
-        )}
+        <UpdateAdvertForm />
       </Grid>
     </Grid>
   );
