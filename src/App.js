@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import Footer from "./components/layout/Footer";
 import Main from "./components/layout/Main";
 import CustomSnackbar from "./components/utils/CustomSnackbar";
+import ConfirmationDialog from "./components/utils/ConfirmationDialog";
 
 const theme = createTheme({
   palette: {
@@ -30,6 +31,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <CustomSnackbar />
+        <ConfirmationDialog />
         <Navbar />
         <Main />
         <Footer />

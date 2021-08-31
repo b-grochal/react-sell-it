@@ -24,7 +24,8 @@ export const cancelAction = () => ({
 });
 
 export const confirmAction = () => (dispatch, getState) => {
-  const { action } = getState().confirmationDialog;
+  // const { dialogAction } = getState().confirmationDialog;
+  // console.log(dialogAction);
   dispatch({ type: CONFIRM_ACTION });
-  dispatch(action());
+  // // dialogAction();
 };

@@ -17,7 +17,7 @@ const confirmationDialogReducer = (state = {}, action) => {
       };
     case CONFIRM_ACTION:
     case CANCEL_ACTION:
-      return {};
+      return { dialogOpen: false };
     default:
       return state;
   }
