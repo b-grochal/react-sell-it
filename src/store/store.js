@@ -9,6 +9,7 @@ import {
   userAdvertListReducer,
 } from "../reducers/advertReducers";
 import { snackbarReducer } from "../reducers/snackbarReducer";
+import confirmationDialogReducer from "../reducers/confirmationDialogReducers";
 import { userSignUpReducer, userSignInReducer } from "../reducers/userReducers";
 
 const initialState = {
@@ -32,6 +33,7 @@ const reducer = combineReducers({
   userSignUp: userSignUpReducer,
   userSignIn: userSignInReducer,
   snackbar: snackbarReducer,
+  confirmationDialog: confirmationDialogReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

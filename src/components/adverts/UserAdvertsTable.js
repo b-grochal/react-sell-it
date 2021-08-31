@@ -18,6 +18,7 @@ import {
 import { Add, Close, EditOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router";
 import { ADVERT_DELETE_RESET } from "../../constants/advertConstants";
+import { requestConfirmation } from "../../actions/confirmationDialogActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +45,16 @@ const UserAdvertsTable = () => {
   } = advertDelete;
 
   const deleteHandler = (advert) => {
-    dispatch(deleteAdvert(advert.advertId));
+    dispatch(
+      requestConfirmation(
+        true,
+        "Delete the advert",
+        `Are you sure you want to delete ${advert.name}?`,
+        () => {
+          dispatch(deleteAdvert(advert.advertId));
+        }
+      )
+    );
   };
 
   useEffect(() => {
