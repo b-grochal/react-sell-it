@@ -5,11 +5,13 @@ import { detailsAdvert } from "../actions/advertActions";
 import { useHistory } from "react-router-dom";
 import AdvertDetails from "../components/adverts/AdvertDetails";
 import SellerDetails from "../components/adverts/SellerDetails";
+import LoadingScreen from "../components/utils/LoadingScreen";
 
 const useStyles = makeStyles((theme) => ({
   container: {
     paddingBottom: theme.spacing(4),
     paddingTop: theme.spacing(4),
+    height: "100%",
   },
 }));
 
@@ -32,7 +34,7 @@ const AdvertDetailsPage = (props) => {
   return (
     <Container className={classes.container}>
       {loading ? (
-        <span>Loading</span>
+        <LoadingScreen />
       ) : (
         <Grid container spacing={2}>
           <Grid item xs={12} md={8}>

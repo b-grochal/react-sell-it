@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { listAdverts } from "../../actions/advertActions";
 import { Grid, Container, makeStyles } from "@material-ui/core";
 import Advert from "./Advert";
+import LoadingScreen from "../utils/LoadingScreen";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -22,19 +23,21 @@ const AdvertsList = () => {
   }, []);
 
   return (
-    <Container className={classes.container}>
+    <>
       {loading ? (
-        <span>Loading</span>
+        <LoadingScreen />
       ) : (
-        <Grid container spacing={3}>
-          {adverts.map((advert) => (
-            <Grid item xs={12} md={6} lg={4} key={advert.advertId}>
-              <Advert advert={advert} />
-            </Grid>
-          ))}
-        </Grid>
+        <Container className={classes.container}>
+          <Grid container spacing={3}>
+            {adverts.map((advert) => (
+              <Grid item xs={12} md={6} lg={4} key={advert.advertId}>
+                <Advert advert={advert} />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 

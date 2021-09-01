@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../actions/userActions";
 import { CompareArrowsOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router";
+import LoadingScreen from "../utils/LoadingScreen";
 
 const useStyles = makeStyles({
   root: {
@@ -73,7 +74,7 @@ const SignInForm = () => {
   return (
     <>
       {loading ? (
-        <LinearProgress />
+        <LoadingScreen />
       ) : (
         <Paper className={classes.root}>
           <Typography variant="h6" align="center" className={classes.heading}>

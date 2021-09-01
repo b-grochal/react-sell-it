@@ -19,6 +19,7 @@ import { Add, Close, EditOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router";
 import { ADVERT_DELETE_RESET } from "../../constants/advertConstants";
 import { requestConfirmation } from "../../actions/confirmationDialogActions";
+import LoadingScreen from "../utils/LoadingScreen";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,11 +66,11 @@ const UserAdvertsTable = () => {
   }, [successDelete]);
 
   return (
-    <Paper className={classes.root}>
+    <>
       {loading || loadingDelete ? (
-        <span>Loading</span>
+        <LoadingScreen />
       ) : (
-        <>
+        <Paper className={classes.root}>
           <Toolbar className={classes.toolbar}>
             <Typography variant="h5">My adverts</Typography>
             <Button
@@ -115,9 +116,9 @@ const UserAdvertsTable = () => {
               </TableBody>
             </Table>
           </TableContainer>
-        </>
+        </Paper>
       )}
-    </Paper>
+    </>
   );
 };
 
