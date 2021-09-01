@@ -15,6 +15,7 @@ import { signUp } from "../../actions/userActions";
 import { CompareArrowsOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router";
 import { USER_SIGNUP_RESET } from "../../constants/userConstants";
+import LoadingScreen from "../utils/LoadingScreen";
 
 const useStyles = makeStyles({
   root: {
@@ -100,7 +101,7 @@ const SignUpForm = () => {
   return (
     <>
       {loading ? (
-        <LinearProgress />
+        <LoadingScreen />
       ) : (
         <Paper className={classes.root}>
           <Typography variant="h6" align="center" className={classes.heading}>
