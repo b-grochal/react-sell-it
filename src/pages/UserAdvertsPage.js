@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingBottom: theme.spacing(4),
     paddingTop: theme.spacing(4),
+    height: "100%",
   },
 }));
 
