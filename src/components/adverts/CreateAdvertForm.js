@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createAdvert } from "../../actions/advertActions";
 import { useHistory } from "react-router";
 import TextArea from "../controls/TextArea";
+import LoadingScreen from "../utils/LoadingScreen";
 
 const useStyles = makeStyles({
   root: {
@@ -75,7 +76,7 @@ const CreateAdvertForm = () => {
   return (
     <>
       {loading ? (
-        <LinearProgress />
+        <LoadingScreen />
       ) : (
         <Paper className={classes.root}>
           <Typography variant="h6" align="center" className={classes.heading}>

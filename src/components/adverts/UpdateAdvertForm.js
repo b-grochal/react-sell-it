@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { detailsAdvert, updateAdvert } from "../../actions/advertActions";
 import { useParams } from "react-router-dom";
 import { ADVERT_UPDATE_RESET } from "../../constants/advertConstants";
+import LoadingScreen from "../utils/LoadingScreen";
 
 const useStyles = makeStyles({
   root: {
@@ -90,7 +91,7 @@ const UpdateAdvertForm = () => {
   return (
     <>
       {loading || loadingUpdate ? (
-        <LinearProgress />
+        <LoadingScreen />
       ) : (
         <Paper className={classes.root}>
           <Typography variant="h6" align="center" className={classes.heading}>
