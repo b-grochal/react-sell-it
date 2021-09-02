@@ -8,7 +8,7 @@ import {
   advertUpdateReducer,
   userAdvertListReducer,
 } from "../reducers/advertReducers";
-import { snackbarReducer } from "../reducers/snackbarReducer";
+import snackbarReducer from "../reducers/snackbarReducer";
 import confirmationDialogReducer from "../reducers/confirmationDialogReducers";
 import { userSignUpReducer, userSignInReducer } from "../reducers/userReducers";
 
