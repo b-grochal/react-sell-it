@@ -12,7 +12,7 @@ import TextArea from "../controls/TextArea";
 import useForm from "../../hooks/useForm";
 import Form from "../utils/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { detailsAdvert, updateAdvert } from "../../actions/advertActions";
+import { detailsAdvertAction, updateAdvert } from "../../actions/advertActions";
 import { useParams } from "react-router-dom";
 import { ADVERT_UPDATE_RESET } from "../../constants/advertConstants";
 
@@ -77,7 +77,7 @@ const UpdateAdvertForm = () => {
     if (!advert || advert.advertId !== id || successUpdate) {
       dispatch({ type: ADVERT_UPDATE_RESET });
       resetForm();
-      dispatch(detailsAdvert(id));
+      dispatch(detailsAdvertAction(id));
     } else {
       setValues({
         name: advert.name,

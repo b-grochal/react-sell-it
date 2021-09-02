@@ -2,7 +2,6 @@ import { Grid, makeStyles } from "@material-ui/core";
 import React, { useEffect } from "react";
 import UpdateAdvertForm from "../components/adverts/UpdateAdvertForm";
 import { useDispatch, useSelector } from "react-redux";
-import { detailsAdvert } from "../actions/advertActions";
 
 const useStyles = makeStyles({
   root: {

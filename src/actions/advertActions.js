@@ -20,7 +20,12 @@ import {
   ADVERT_DELETE_SUCCESS,
 } from "../constants/advertConstants";
 import { setSnackbar } from "./snackbarActions";
-import { getAdverts, getUserAdverts } from "../services/adverts";
+import {
+  getAdverts,
+  getUserAdverts,
+  getAdvertDetails,
+  createAdvert,
+} from "../services/adverts";
 
 export const listAdvertsAction = () => async (dispatch) => {
   dispatch({
@@ -49,14 +54,11 @@ export const listUserAdvertsAction = () => async (dispatch, getState) => {
   }
 };
 
-export const detailsAdvert = (advertId) => async (dispatch) => {
+export const detailsAdvertAction = (advertId) => async (dispatch) => {
   dispatch({ type: ADVERT_DETAILS_REQUEST, payload: advertId });
   try {
-    const { data } = await Axios.get(
-      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/${advertId}/details`
-    );
+    const { data } = await getAdvertDetails(advertId);
     dispatch({ type: ADVERT_DETAILS_SUCCESS, payload: data });
-    console.log(data);
   } catch (error) {
     dispatch({
       type: ADVERT_DETAILS_FAIL,
@@ -68,19 +70,13 @@ export const detailsAdvert = (advertId) => async (dispatch) => {
   }
 };
 
-export const createAdvert = (advert) => async (dispatch, getState) => {
+export const createAdvertAction = (advert) => async (dispatch, getState) => {
   dispatch({ type: ADVERT_CREATE_REQUEST });
   const {
     userSignIn: { userToken },
   } = getState();
   try {
-    const { data } = await Axios.post(
-      "http://localhost:5001/sell-it-747c3/us-central1/api/adverts",
-      advert,
-      {
-        headers: { Authorization: `Bearer ${userToken}` },
-      }
-    );
+    const { data } = await createAdvert(userToken, advert);
     dispatch({
       type: ADVERT_CREATE_SUCCESS,
       payload: data.product,
