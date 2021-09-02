@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  deleteAdvert,
+  deleteAdvertAction,
   listUserAdvertsAction,
 } from "../../actions/advertActions";
 import {
@@ -54,7 +54,7 @@ const UserAdvertsTable = () => {
         "Delete the advert",
         `Are you sure you want to delete ${advert.name}?`,
         () => {
-          dispatch(deleteAdvert(advert.advertId));
+          dispatch(deleteAdvertAction(advert.advertId));
         }
       )
     );

@@ -12,7 +12,10 @@ import TextArea from "../controls/TextArea";
 import useForm from "../../hooks/useForm";
 import Form from "../utils/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { detailsAdvertAction, updateAdvert } from "../../actions/advertActions";
+import {
+  detailsAdvertAction,
+  updateAdvertAction,
+} from "../../actions/advertActions";
 import { useParams } from "react-router-dom";
 import { ADVERT_UPDATE_RESET } from "../../constants/advertConstants";
 
@@ -69,7 +72,7 @@ const UpdateAdvertForm = () => {
     e.preventDefault();
     values.price = parseFloat(values.price);
     if (validate(values)) {
-      dispatch(updateAdvert(advert.advertId, values));
+      dispatch(updateAdvertAction(advert.advertId, values));
     }
   };
 

@@ -25,6 +25,8 @@ import {
   getUserAdverts,
   getAdvertDetails,
   createAdvert,
+  updateAdvert,
+  deleteAdvert,
 } from "../services/adverts";
 
 export const listAdvertsAction = () => async (dispatch) => {
@@ -92,20 +94,14 @@ export const createAdvertAction = (advert) => async (dispatch, getState) => {
   }
 };
 
-export const updateAdvert =
+export const updateAdvertAction =
   (advertId, advertData) => async (dispatch, getState) => {
     dispatch({ type: ADVERT_UPDATE_REQUEST, payload: advertData });
     const {
       userSignIn: { userToken },
     } = getState();
     try {
-      const { data } = await Axios.put(
-        `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/${advertId}`,
-        advertData,
-        {
-          headers: { Authorization: `Bearer ${userToken}` },
-        }
-      );
+      const { data } = await updateAdvert(userToken, advertId, advertData);
       dispatch({ type: ADVERT_UPDATE_SUCCESS, payload: data });
     } catch (error) {
       const message =
@@ -116,18 +112,13 @@ export const updateAdvert =
     }
   };
 
-export const deleteAdvert = (advertId) => async (dispatch, getState) => {
+export const deleteAdvertAction = (advertId) => async (dispatch, getState) => {
   dispatch({ type: ADVERT_DELETE_REQUEST, payload: advertId });
   const {
     userSignIn: { userToken },
   } = getState();
   try {
-    const { data } = Axios.delete(
-      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/${advertId}`,
-      {
-        headers: { Authorization: `Bearer ${userToken}` },
-      }
-    );
+    const { data } = await deleteAdvert(userToken, advertId);
     dispatch({ type: ADVERT_DELETE_SUCCESS });
   } catch (error) {
     const message =

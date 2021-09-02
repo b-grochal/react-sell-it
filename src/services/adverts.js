@@ -19,3 +19,15 @@ export const createAdvert = (userToken, advert) => {
     headers: { Authorization: `Bearer ${userToken}` },
   });
 };
+
+export const updateAdvert = (userToken, advertId, advertData) => {
+  return http.put(`adverts/${advertId}`, advertData, {
+    headers: { Authorization: `Bearer ${userToken}` },
+  });
+};
+
+export const deleteAdvert = (userToken, advertId) => {
+  http.delete(`adverts/${advertId}`, {
+    headers: { Authorization: `Bearer ${userToken}` },
+  });
+};
