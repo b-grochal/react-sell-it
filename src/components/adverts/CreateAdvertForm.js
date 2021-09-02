@@ -11,7 +11,7 @@ import SubmitButton from "../controls/SubmitButton";
 import useForm from "../../hooks/useForm";
 import Form from "../utils/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { createAdvert } from "../../actions/advertActions";
+import { createAdvertAction } from "../../actions/advertActions";
 import { useHistory } from "react-router";
 import TextArea from "../controls/TextArea";
 import LoadingScreen from "../utils/LoadingScreen";
@@ -63,7 +63,7 @@ const CreateAdvertForm = () => {
     e.preventDefault();
     values.price = parseFloat(values.price);
     if (validate(values)) {
-      dispatch(createAdvert(values));
+      dispatch(createAdvertAction(values));
     }
   };
 

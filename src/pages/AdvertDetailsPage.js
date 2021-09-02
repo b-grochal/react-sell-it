@@ -1,7 +1,7 @@
 import { Button, Container, Grid, makeStyles, Paper } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { detailsAdvert } from "../actions/advertActions";
+import { detailsAdvertAction } from "../actions/advertActions";
 import { useHistory } from "react-router-dom";
 import AdvertDetails from "../components/adverts/AdvertDetails";
 import SellerDetails from "../components/adverts/SellerDetails";
@@ -28,7 +28,7 @@ const AdvertDetailsPage = (props) => {
   };
 
   useEffect(() => {
-    dispatch(detailsAdvert(advertId));
+    dispatch(detailsAdvertAction(advertId));
   }, []);
 
   return (

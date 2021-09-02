@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteAdvert, listUserAdverts } from "../../actions/advertActions";
+import {
+  deleteAdvertAction,
+  listUserAdvertsAction,
+} from "../../actions/advertActions";
 import {
   Button,
   Paper,
@@ -52,7 +55,7 @@ const UserAdvertsTable = () => {
         "Delete the advert",
         `Are you sure you want to delete ${advert.name}?`,
         () => {
-          dispatch(deleteAdvert(advert.advertId));
+          dispatch(deleteAdvertAction(advert.advertId));
         }
       )
     );
@@ -62,7 +65,7 @@ const UserAdvertsTable = () => {
     if (successDelete) {
       dispatch({ type: ADVERT_DELETE_RESET });
     }
-    dispatch(listUserAdverts());
+    dispatch(listUserAdvertsAction());
   }, [successDelete]);
 
   return (

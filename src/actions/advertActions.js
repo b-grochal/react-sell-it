@@ -20,23 +20,28 @@ import {
   ADVERT_DELETE_SUCCESS,
 } from "../constants/advertConstants";
 import { setSnackbar } from "./snackbarActions";
+import {
+  getAdverts,
+  getUserAdverts,
+  getAdvertDetails,
+  createAdvert,
+  updateAdvert,
+  deleteAdvert,
+} from "../services/adverts";
 
-export const listAdverts = () => async (dispatch) => {
+export const listAdvertsAction = () => async (dispatch) => {
   dispatch({
     type: ADVERT_LIST_REQUEST,
   });
   try {
-    const { data } = await Axios.get(
-      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/`
-    );
-    console.log(data);
+    const { data } = await getAdverts();
     dispatch({ type: ADVERT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ADVERT_LIST_FAIL, payload: error.message });
   }
 };
 
-export const listUserAdverts = () => async (dispatch, getState) => {
+export const listUserAdvertsAction = () => async (dispatch, getState) => {
   dispatch({
     type: USER_ADVERT_LIST_REQUEST,
   });
@@ -44,27 +49,18 @@ export const listUserAdverts = () => async (dispatch, getState) => {
     userSignIn: { userToken },
   } = getState();
   try {
-    const { data } = await Axios.get(
-      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/my-adverts`,
-      {
-        headers: { Authorization: `Bearer ${userToken}` },
-      }
-    );
-    console.log(data);
+    const { data } = await getUserAdverts(userToken);
     dispatch({ type: USER_ADVERT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: USER_ADVERT_LIST_FAIL, payload: error.message });
   }
 };
 
-export const detailsAdvert = (advertId) => async (dispatch) => {
+export const detailsAdvertAction = (advertId) => async (dispatch) => {
   dispatch({ type: ADVERT_DETAILS_REQUEST, payload: advertId });
   try {
-    const { data } = await Axios.get(
-      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/${advertId}/details`
-    );
+    const { data } = await getAdvertDetails(advertId);
     dispatch({ type: ADVERT_DETAILS_SUCCESS, payload: data });
-    console.log(data);
   } catch (error) {
     dispatch({
       type: ADVERT_DETAILS_FAIL,
@@ -76,19 +72,13 @@ export const detailsAdvert = (advertId) => async (dispatch) => {
   }
 };
 
-export const createAdvert = (advert) => async (dispatch, getState) => {
+export const createAdvertAction = (advert) => async (dispatch, getState) => {
   dispatch({ type: ADVERT_CREATE_REQUEST });
   const {
     userSignIn: { userToken },
   } = getState();
   try {
-    const { data } = await Axios.post(
-      "http://localhost:5001/sell-it-747c3/us-central1/api/adverts",
-      advert,
-      {
-        headers: { Authorization: `Bearer ${userToken}` },
-      }
-    );
+    const { data } = await createAdvert(userToken, advert);
     dispatch({
       type: ADVERT_CREATE_SUCCESS,
       payload: data.product,
@@ -104,20 +94,14 @@ export const createAdvert = (advert) => async (dispatch, getState) => {
   }
 };
 
-export const updateAdvert =
+export const updateAdvertAction =
   (advertId, advertData) => async (dispatch, getState) => {
     dispatch({ type: ADVERT_UPDATE_REQUEST, payload: advertData });
     const {
       userSignIn: { userToken },
     } = getState();
     try {
-      const { data } = await Axios.put(
-        `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/${advertId}`,
-        advertData,
-        {
-          headers: { Authorization: `Bearer ${userToken}` },
-        }
-      );
+      const { data } = await updateAdvert(userToken, advertId, advertData);
       dispatch({ type: ADVERT_UPDATE_SUCCESS, payload: data });
     } catch (error) {
       const message =
@@ -128,18 +112,13 @@ export const updateAdvert =
     }
   };
 
-export const deleteAdvert = (advertId) => async (dispatch, getState) => {
+export const deleteAdvertAction = (advertId) => async (dispatch, getState) => {
   dispatch({ type: ADVERT_DELETE_REQUEST, payload: advertId });
   const {
     userSignIn: { userToken },
   } = getState();
   try {
-    const { data } = Axios.delete(
-      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/${advertId}`,
-      {
-        headers: { Authorization: `Bearer ${userToken}` },
-      }
-    );
+    const { data } = await deleteAdvert(userToken, advertId);
     dispatch({ type: ADVERT_DELETE_SUCCESS });
   } catch (error) {
     const message =
