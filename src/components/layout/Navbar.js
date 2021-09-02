@@ -11,13 +11,17 @@ import {
 import { HelpOutline } from "@material-ui/icons";
 import MenuIcon from "@material-ui/icons/Menu";
 import React, { useState, useEffect } from "react";
-import ListItemLink from "../utils/ListItemLink";
+import ListItemLink from "../controls/ListItemLink";
 import { Link } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import HomeIcon from "@material-ui/icons/Home";
 
 const useStyles = makeStyles((theme) => ({
+  logo: {
+    textTransform: "uppercase",
+  },
   toolbar: {
     display: "flex",
     justifyContent: "space-between",
@@ -70,7 +74,9 @@ const Navbar = () => {
   const displayDesktop = () => {
     return (
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h6">Sell It</Typography>
+        <Typography variant="h6" className={classes.logo}>
+          Sell It
+        </Typography>
         <div>{getMenuButtons()}</div>
       </Toolbar>
     );
@@ -118,13 +124,9 @@ const Navbar = () => {
               to="/adverts/my-adverts"
               className={classes.navButton}
             >
-              My Account
+              My Adverts
             </Button>
-            <Button
-              component={Link}
-              onClick={logoutHandler}
-              className={classes.navButton}
-            >
+            <Button onClick={logoutHandler} className={classes.navButton}>
               Log Out
             </Button>
           </>
@@ -153,10 +155,16 @@ const Navbar = () => {
   const getDrawerLinks = () => {
     return (
       <List onClick={handleDrawerClose}>
-        <ListItemLink primary="Home" to="/" icon={<HelpOutline />} />
+        <ListItemLink primary="Home" to="/" icon={<HomeIcon />} />
         <ListItemLink primary="Adverts" to="/adverts" icon={<HelpOutline />} />
-        <ListItemLink primary="Account" to="/account" icon={<HelpOutline />} />
-        <ListItemLink primary="Log Out" to="/" icon={<HelpOutline />} />
+        <ListItemLink
+          primary="My Adverts"
+          to="/adverts/my-adverts"
+          icon={<HelpOutline />}
+        />
+        <Button onClick={logoutHandler} className={classes.navButton}>
+          Log Out
+        </Button>
         <ListItemLink primary="Sign In" to="/sign-in" icon={<HelpOutline />} />
         <ListItemLink primary="Sign Up" to="/sign-up" icon={<HelpOutline />} />
       </List>
