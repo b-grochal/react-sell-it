@@ -18,6 +18,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import HomeIcon from "@material-ui/icons/Home";
 import ListItemButton from "../controls/ListItemButton";
+import ListIcon from "@material-ui/icons/List";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import PersonIcon from "@material-ui/icons/Person";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -51,7 +56,7 @@ const Navbar = () => {
   const userSignIn = useSelector((state) => state.userSignIn);
   const { userToken } = userSignIn;
   const dispatch = useDispatch();
-  const logoutHandler = () => {
+  const handleLogout = () => {
     history.push("/");
     dispatch(logout());
   };
@@ -127,7 +132,7 @@ const Navbar = () => {
             >
               My Adverts
             </Button>
-            <Button onClick={logoutHandler} className={classes.navButton}>
+            <Button onClick={handleLogout} className={classes.navButton}>
               Log Out
             </Button>
           </>
@@ -157,18 +162,18 @@ const Navbar = () => {
     return (
       <List onClick={handleDrawerClose}>
         <ListItemLink primary="Home" to="/" icon={<HomeIcon />} />
-        <ListItemLink primary="Adverts" to="/adverts" icon={<HelpOutline />} />
+        <ListItemLink primary="Adverts" to="/adverts" icon={<ListIcon />} />
         {userToken ? (
           <>
             <ListItemLink
               primary="My Adverts"
               to="/adverts/my-adverts"
-              icon={<HelpOutline />}
+              icon={<AccountBoxIcon />}
             />
             <ListItemButton
               primary="Log out"
-              onClickHandle={logoutHandler}
-              icon={<HelpOutline />}
+              onClickHandle={handleLogout}
+              icon={<ExitToAppIcon />}
             />
           </>
         ) : (
@@ -176,12 +181,12 @@ const Navbar = () => {
             <ListItemLink
               primary="Sign In"
               to="/sign-in"
-              icon={<HelpOutline />}
+              icon={<PersonIcon />}
             />
             <ListItemLink
               primary="Sign Up"
               to="/sign-up"
-              icon={<HelpOutline />}
+              icon={<PersonAddIcon />}
             />
           </>
         )}
