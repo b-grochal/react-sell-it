@@ -17,6 +17,7 @@ import { logout } from "../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import HomeIcon from "@material-ui/icons/Home";
+import ListItemButton from "../controls/ListItemButton";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -157,16 +158,33 @@ const Navbar = () => {
       <List onClick={handleDrawerClose}>
         <ListItemLink primary="Home" to="/" icon={<HomeIcon />} />
         <ListItemLink primary="Adverts" to="/adverts" icon={<HelpOutline />} />
-        <ListItemLink
-          primary="My Adverts"
-          to="/adverts/my-adverts"
-          icon={<HelpOutline />}
-        />
-        <Button onClick={logoutHandler} className={classes.navButton}>
-          Log Out
-        </Button>
-        <ListItemLink primary="Sign In" to="/sign-in" icon={<HelpOutline />} />
-        <ListItemLink primary="Sign Up" to="/sign-up" icon={<HelpOutline />} />
+        {userToken ? (
+          <>
+            <ListItemLink
+              primary="My Adverts"
+              to="/adverts/my-adverts"
+              icon={<HelpOutline />}
+            />
+            <ListItemButton
+              primary="Log out"
+              onClickHandle={logoutHandler}
+              icon={<HelpOutline />}
+            />
+          </>
+        ) : (
+          <>
+            <ListItemLink
+              primary="Sign In"
+              to="/sign-in"
+              icon={<HelpOutline />}
+            />
+            <ListItemLink
+              primary="Sign Up"
+              to="/sign-up"
+              icon={<HelpOutline />}
+            />
+          </>
+        )}
       </List>
     );
   };
