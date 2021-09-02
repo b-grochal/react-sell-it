@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteAdvert, listUserAdverts } from "../../actions/advertActions";
+import {
+  deleteAdvert,
+  listUserAdvertsAction,
+} from "../../actions/advertActions";
 import {
   Button,
   Paper,
@@ -61,7 +64,7 @@ const UserAdvertsTable = () => {
     if (successDelete) {
       dispatch({ type: ADVERT_DELETE_RESET });
     }
-    dispatch(listUserAdverts());
+    dispatch(listUserAdvertsAction());
   }, [successDelete]);
 
   return (

@@ -20,23 +20,21 @@ import {
   ADVERT_DELETE_SUCCESS,
 } from "../constants/advertConstants";
 import { setSnackbar } from "./snackbarActions";
+import { getAdverts, getUserAdverts } from "../services/adverts";
 
-export const listAdverts = () => async (dispatch) => {
+export const listAdvertsAction = () => async (dispatch) => {
   dispatch({
     type: ADVERT_LIST_REQUEST,
   });
   try {
-    const { data } = await Axios.get(
-      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/`
-    );
-    console.log(data);
+    const { data } = await getAdverts();
     dispatch({ type: ADVERT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ADVERT_LIST_FAIL, payload: error.message });
   }
 };
 
-export const listUserAdverts = () => async (dispatch, getState) => {
+export const listUserAdvertsAction = () => async (dispatch, getState) => {
   dispatch({
     type: USER_ADVERT_LIST_REQUEST,
   });
@@ -44,13 +42,7 @@ export const listUserAdverts = () => async (dispatch, getState) => {
     userSignIn: { userToken },
   } = getState();
   try {
-    const { data } = await Axios.get(
-      `http://localhost:5001/sell-it-747c3/us-central1/api/adverts/my-adverts`,
-      {
-        headers: { Authorization: `Bearer ${userToken}` },
-      }
-    );
-    console.log(data);
+    const { data } = await getUserAdverts(userToken);
     dispatch({ type: USER_ADVERT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: USER_ADVERT_LIST_FAIL, payload: error.message });

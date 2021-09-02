@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listAdverts } from "../../actions/advertActions";
+import { listAdvertsAction } from "../../actions/advertActions";
 import { Grid, Container, makeStyles } from "@material-ui/core";
 import Advert from "./Advert";
 
@@ -18,7 +18,7 @@ const AdvertsList = () => {
   const { adverts, loading, error } = advertList;
 
   useEffect(() => {
-    dispatch(listAdverts());
+    dispatch(listAdvertsAction());
   }, []);
 
   return (
