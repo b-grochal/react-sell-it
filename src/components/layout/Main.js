@@ -24,25 +24,13 @@ const Main = () => {
   return (
     <main className={classes.main}>
       <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-        <Route path="/sign-in">
-          <SignInPage />
-        </Route>
-        <Route path="/sign-up">
-          <SignUpPage />
-        </Route>
-        <AuthRoute path="/adverts/my-adverts">
-          <UserAdvertsPage />
-        </AuthRoute>
-        <AuthRoute path="/adverts/create">
-          <CreateAdvertPage />
-        </AuthRoute>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/sign-in" component={SignInPage} />
+        <Route path="/sign-up" component={SignUpPage} />
+        <AuthRoute path="/adverts/my-adverts" component={UserAdvertsPage} />
+        <AuthRoute path="/adverts/create" component={CreateAdvertPage} />
         <AuthRoute path="/adverts/:id/update" component={UpdateAdvertPage} />
-        <Route path="/adverts" exact>
-          <AdvertsPage />
-        </Route>
+        <Route path="/adverts" exact component={AdvertsPage} />
         <Route path="/adverts/:id" component={AdvertDetailsPage} />
       </Switch>
     </main>
