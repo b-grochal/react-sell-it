@@ -1,6 +1,6 @@
 import http from "./http";
 
-export const signUp = async (
+export const signUp = (
   firstName,
   familyName,
   phoneNumber,
@@ -8,7 +8,7 @@ export const signUp = async (
   password,
   confirmPassword
 ) => {
-  return await http.post("sign-up", {
+  return http.post("sign-up", {
     firstName,
     familyName,
     phoneNumber,
@@ -18,8 +18,8 @@ export const signUp = async (
   });
 };
 
-export const signIn = async (email, password) => {
-  return await http.post("sign-in", {
+export const signIn = (email, password) => {
+  return http.post("sign-in", {
     email,
     password,
   });
