@@ -26,7 +26,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
-    textTransform: "uppercase",
+    textTransform: "uppercase !important",
   },
   toolbar: {
     display: "flex",
@@ -96,7 +96,9 @@ const Navbar = () => {
   const displayMobile = () => {
     return (
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h6">Sell It</Typography>
+        <Typography className={classes.logo} variant="h6">
+          Sell It
+        </Typography>
         <IconButton edge="start" color="inherit" onClick={handleDrawerOpen}>
           <MenuIcon />
         </IconButton>
