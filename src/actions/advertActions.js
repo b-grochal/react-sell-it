@@ -103,6 +103,7 @@ export const updateAdvertAction =
     try {
       const { data } = await updateAdvert(userToken, advertId, advertData);
       dispatch({ type: ADVERT_UPDATE_SUCCESS, payload: data });
+      dispatch(setSnackbar(true, "success", "Advert updated successfully"));
     } catch (error) {
       const message =
         error.response && error.response.data.message

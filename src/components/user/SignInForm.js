@@ -87,7 +87,9 @@ const SignInForm = () => {
                   name="email"
                   label="Email"
                   value={values.email}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   error={errors.email}
                   fullWidth
                 />
@@ -97,7 +99,9 @@ const SignInForm = () => {
                   name="password"
                   label="Password"
                   value={values.password}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   error={errors.password}
                   type="password"
                   fullWidth

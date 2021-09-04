@@ -15,6 +15,7 @@ import { createAdvertAction } from "../../actions/advertActions";
 import { useHistory } from "react-router";
 import TextArea from "../controls/TextArea";
 import LoadingScreen from "../utils/LoadingScreen";
+import { ADVERT_CREATE_RESET } from "../../constants/advertConstants";
 
 const useStyles = makeStyles({
   root: {
@@ -61,7 +62,6 @@ const CreateAdvertForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    values.price = parseFloat(values.price);
     if (validate(values)) {
       dispatch(createAdvertAction(values));
     }
@@ -69,7 +69,8 @@ const CreateAdvertForm = () => {
 
   useEffect(() => {
     if (success) {
-      resetForm();
+      dispatch({ type: ADVERT_CREATE_RESET });
+      history.push("/adverts/my-adverts");
     }
   }, [success]);
 
@@ -89,7 +90,9 @@ const CreateAdvertForm = () => {
                   name="name"
                   label="Name"
                   value={values.name}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   error={errors.name}
                   fullWidth
                 />
@@ -99,7 +102,9 @@ const CreateAdvertForm = () => {
                   name="description"
                   label="Description"
                   value={values.description}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   error={errors.description}
                   fullWidth
                 />
@@ -109,7 +114,9 @@ const CreateAdvertForm = () => {
                   name="price"
                   label="Price"
                   value={values.price}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.valueAsNumber);
+                  }}
                   error={errors.price}
                   fullWidth
                   type="number"

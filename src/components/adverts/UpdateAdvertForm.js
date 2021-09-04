@@ -19,6 +19,7 @@ import {
 import { useParams } from "react-router-dom";
 import { ADVERT_UPDATE_RESET } from "../../constants/advertConstants";
 import LoadingScreen from "../utils/LoadingScreen";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   root: {
@@ -39,6 +40,7 @@ const initialValues = {
 const UpdateAdvertForm = () => {
   const classes = useStyles();
   const { id } = useParams();
+  const history = useHistory();
   const dispatch = useDispatch();
   const advertDetails = useSelector((state) => state.advertDetails);
   const { advert, loading, error } = advertDetails;
@@ -69,19 +71,20 @@ const UpdateAdvertForm = () => {
     useForm(initialValues, validate);
 
   const handleSubmit = (e) => {
-    console.log(values);
     e.preventDefault();
-    values.price = parseFloat(values.price);
     if (validate(values)) {
       dispatch(updateAdvertAction(advert.advertId, values));
     }
   };
 
   useEffect(() => {
-    if (!advert || advert.advertId !== id || successUpdate) {
+    if (!advert || advert.advertId !== id) {
       dispatch({ type: ADVERT_UPDATE_RESET });
       resetForm();
       dispatch(detailsAdvertAction(id));
+    } else if (successUpdate) {
+      dispatch({ type: ADVERT_UPDATE_RESET });
+      history.push("/adverts/my-adverts");
     } else {
       setValues({
         name: advert.name,
@@ -107,7 +110,9 @@ const UpdateAdvertForm = () => {
                   name="name"
                   label="Name"
                   value={values.name}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   error={errors.name}
                   fullWidth
                 />
@@ -117,7 +122,9 @@ const UpdateAdvertForm = () => {
                   name="description"
                   label="Description"
                   value={values.description}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   error={errors.description}
                   fullWidth
                 />
@@ -127,7 +134,9 @@ const UpdateAdvertForm = () => {
                   name="price"
                   label="Price"
                   value={values.price}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.valueAsNumber);
+                  }}
                   error={errors.price}
                   fullWidth
                   type="number"
