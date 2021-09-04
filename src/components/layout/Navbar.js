@@ -57,8 +57,8 @@ const Navbar = () => {
   const { userToken } = userSignIn;
   const dispatch = useDispatch();
   const handleLogout = () => {
-    history.push("/");
     dispatch(logout());
+    history.push("/");
   };
 
   useEffect(() => {
