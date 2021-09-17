@@ -1,6 +1,6 @@
 import { SET_SNACKBAR } from "../constants/snackbarConstants";
 
-export const snackbarReducer = (state = {}, action) => {
+const snackbarReducer = (state = {}, action) => {
   switch (action.type) {
     case SET_SNACKBAR:
       const { snackbarOpen, snackbarMessage, snackbarType } = action.payload;
@@ -14,3 +14,5 @@ export const snackbarReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export default snackbarReducer;

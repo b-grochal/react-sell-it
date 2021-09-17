@@ -94,7 +94,7 @@ const SignUpForm = () => {
   useEffect(() => {
     if (registered) {
       dispatch({ type: USER_SIGNUP_RESET });
-      resetForm();
+      history.push("sign-in");
     }
   }, [registered]);
 
@@ -114,7 +114,9 @@ const SignUpForm = () => {
                   name="firstName"
                   label="First name"
                   value={values.firstName}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   error={errors.firstName}
                   fullWidth
                 />
@@ -124,7 +126,9 @@ const SignUpForm = () => {
                   name="familyName"
                   label="Family name"
                   value={values.familyName}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   error={errors.familyName}
                   fullWidth
                 />
@@ -134,7 +138,9 @@ const SignUpForm = () => {
                   name="phoneNumber"
                   label="Phone number"
                   value={values.phoneNumber}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   error={errors.phoneNumber}
                   fullWidth
                 />
@@ -144,7 +150,9 @@ const SignUpForm = () => {
                   name="email"
                   label="Email"
                   value={values.email}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   error={errors.email}
                   fullWidth
                 />
@@ -154,7 +162,9 @@ const SignUpForm = () => {
                   name="password"
                   label="Password"
                   value={values.password}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   error={errors.password}
                   type="password"
                   fullWidth
@@ -165,7 +175,9 @@ const SignUpForm = () => {
                   name="confirmPassword"
                   label="Confirm password"
                   value={values.confirmPassword}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    handleInputChange(e.target.name, e.target.value);
+                  }}
                   error={errors.confirmPassword}
                   type="password"
                   fullWidth

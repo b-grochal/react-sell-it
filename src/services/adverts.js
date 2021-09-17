@@ -27,7 +27,7 @@ export const updateAdvert = (userToken, advertId, advertData) => {
 };
 
 export const deleteAdvert = (userToken, advertId) => {
-  http.delete(`adverts/${advertId}`, {
+  return http.delete(`adverts/${advertId}`, {
     headers: { Authorization: `Bearer ${userToken}` },
   });
 };

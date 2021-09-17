@@ -103,6 +103,7 @@ export const updateAdvertAction =
     try {
       const { data } = await updateAdvert(userToken, advertId, advertData);
       dispatch({ type: ADVERT_UPDATE_SUCCESS, payload: data });
+      dispatch(setSnackbar(true, "success", "Advert updated successfully"));
     } catch (error) {
       const message =
         error.response && error.response.data.message
@@ -120,6 +121,7 @@ export const deleteAdvertAction = (advertId) => async (dispatch, getState) => {
   try {
     const { data } = await deleteAdvert(userToken, advertId);
     dispatch({ type: ADVERT_DELETE_SUCCESS });
+    dispatch(setSnackbar(true, "success", "Advert deleted successfully"));
   } catch (error) {
     const message =
       error.response && error.response.data.message
